@@ -1,6 +1,8 @@
 ### Udagram/Udacity - Deploy a high-availability web app using CloudFormation
 This application deploy apache web-server on aws ec2 instance using cloudformation script.
 
+![](images/udagram.png)
+
 ### Resources and Description
 1. VPC - Virtual Private Cloud for all the resources which shared connection under CIDR
 2. InternetGateway - Creating connection from outside word to the servers at port :80
@@ -20,6 +22,7 @@ This folder provides the supporting material and starter code for the "ND9991 - 
 2. project_starter/README.md - AWS cloudformation  commands to run.
 3. create.sh - The file contain aws cloudformation cammand for creating stack
 4. create.sh - The file contain aws cloudformation cammand for updating stack
+5. images/udagram - Luci Diagram for udagram
 
 
 ### Dependencies
