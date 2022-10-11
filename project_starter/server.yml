@@ -79,8 +79,9 @@ Resources:
       ImageId: ami-08c40ec9ead489470
       # ToDo: Change the key-pair name
       KeyName: apacheServer
-      IamInstanceProfile: 
-      - Ref: ProfileWithRolesForOurApp
+      IamInstanceProfile: udagramS3ReadEC2Access
+      # IamInstanceProfile: 
+      # - Ref: ProfileWithRolesForOurApp
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t2.medium
@@ -134,7 +135,7 @@ Resources:
           Values: [/]
         ListenerArn: !Ref 'Listener'
         Priority: 1
-        
+
   WebAppTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
@@ -149,8 +150,10 @@ Resources:
       VpcId: 
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
-# Outputs: 
-  # This is also optional.
-  # Bonus points for useful outputs!
-  # for example, if you create a Load Balancer
-  # it's nice to output the URL to it here, so that we don't have to go to the console to get it.
+
+Outputs: 
+    LBDNSname: 
+        Description: A reference to the created LoadBalancer url
+        Value: !Sub http://${WebAppLB.DNSName}
+        Export:
+          Name: LoadBalancerUrl
