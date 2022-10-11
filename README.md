@@ -1,6 +1,8 @@
 ### Udagram/Udacity - Deploy a high-availability web app using CloudFormation
 This application deploy apache web-server on aws ec2 instance using cloudformation script.
 
+## Link to Loadbalancer [LBDSNname](http://udagr-webap-gxuge5y99dzg-911395205.us-east-1.elb.amazonaws.com/)
+'Note:' this linnk won't be avalaible after feedback from tutor verify assignment
 ![](images/udagram.png)
 
 ### Resources and Description

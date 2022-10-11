@@ -72,16 +72,17 @@ Resources:
           #!/bin/bash
           sudo apt-get update -y
           sudo apt-get install apache2 -y
-          sudo systemctl start apache2.service
+          sudo apt-get update -y
+          sudo apt-get install awscli -y
           sudo cd /var/www/html
-          sudo echo "Udagram Demo Web Server Up and Running!" >          
+          sudo chmod -R 777 index.html
+          echo "Udagram Demo Web Server Up and Running!" > index.html         
       # ToDo: AMI ID of Ubuntu Linux machine applicable to you region.
       ImageId: ami-08c40ec9ead489470
       # ToDo: Change the key-pair name
       KeyName: apacheServer
-      IamInstanceProfile: udagramS3ReadEC2Access
-      # IamInstanceProfile: 
-      # - Ref: ProfileWithRolesForOurApp
+      # IamInstanceProfile: udagramS3ReadEC2Access
+      IamInstanceProfile: !Ref ProfileWithRolesForOurApp
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t2.medium
@@ -161,7 +162,8 @@ Resources:
           sudo apt-get install apache2 -y
           sudo systemctl start apache2.service  
       ImageId: ami-08c40ec9ead489470
-      KeyName: "jumpbox"
+      KeyName: JumpBox
+      InstanceType: t2.medium
       NetworkInterfaces: 
         - AssociatePublicIpAddress: "true"
           DeviceIndex: "0"
@@ -169,7 +171,7 @@ Resources:
             - Ref: WebServerSecGroup
           SubnetId: 
             Fn::ImportValue:
-              !Sub ${EnvironmentName}-PUB1-SN
+              !Sub ${EnvironmentName}-PUB2-SN
 
 Outputs: 
     LBDNSname: 
